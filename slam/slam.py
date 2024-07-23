@@ -260,14 +260,14 @@ class Slam:
             # Loss
             self.depth_loss.append(losses['depth_loss'])
             self.velocity_loss.append(losses['velocity_loss'])
-            # Depth error
-            if self.online_dataset_type == 'Kitti':
-                self.depth_error.append(
-                    calc_depth_error(outputs['depth', 0][0, ...].squeeze().detach().cpu().numpy(),
-                                     online_data['depth', 0,
-                                                 -1][0, ...].squeeze().detach().cpu().numpy(),
-                                     min_depth=self.predictor.min_depth,
-                                     max_depth=self.predictor.max_depth))
+            # # Depth error
+            # if self.online_dataset_type == 'Kitti':
+            #     self.depth_error.append(
+            #         calc_depth_error(outputs['depth', 0][0, ...].squeeze().detach().cpu().numpy(),
+            #                          online_data['depth', 0,
+            #                                      -1][0, ...].squeeze().detach().cpu().numpy(),
+            #                          min_depth=self.predictor.min_depth,
+            #                          max_depth=self.predictor.max_depth))
             # Plot the tracked metrics
             if PLOTTING and (not self.current_step % 100 or optimized):
                 self.plot_metrics()
